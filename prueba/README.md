@@ -13,7 +13,7 @@ Requisitos de UI
 
 Mostrar los resultados en una tabla/lista.
 
-Incluir paginación para poder navegar y mostrar hasta 50 ítems.
+Incluir paginación para poder navegar y mostrar hasta 40 ítems.
 
 Estructura requerida del código
 
@@ -21,9 +21,9 @@ Debes implementar el flujo siguiendo esta arquitectura:
 
 services → actions → hook → component
 
-Services: lógica de consumo de la API de Google Books (request, params, manejo de respuesta).
+Services: lógica de consumo de la API de Google Books (request, params, manejo de respuesta). 'use server'
 
-Actions: lógica propia del negocio (transformaciones, validaciones, normalización de datos, etc.).
+Actions: lógica propia del negocio (transformaciones, validaciones, normalización de datos, etc.). 'use server'
 
 Hook: lógica del llamado usando TanStack Query / React Query (loading, error, paginación).
 
