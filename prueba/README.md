@@ -27,11 +27,11 @@ Actions: lógica propia del negocio (transformaciones, validaciones, normalizaci
 
 Hook: lógica del llamado usando TanStack Query / React Query (loading, error, paginación).
 
+Component: presentación de UI y render de los datos obtenidos.
+
 Axios y tanstack query ya estan instalados
 
 Tanstack esta instalado pero no configurado
-
-Component: presentación de UI y render de los datos obtenidos.
 
 Tiempo
 
