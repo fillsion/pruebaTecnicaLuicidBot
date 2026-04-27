@@ -1,0 +1,32 @@
+{
+  "tasks": [
+    {
+      "id": "3230ea48-4d00-47be-96e6-8b87781fea7c",
+      "title": "Aprender React Query",
+      "completed": false,
+      "createdAt": "2026-04-27",
+      "priority": "medium"
+    },
+    {
+      "id": "1",
+      "title": "Aprender React Query (editado)",
+      "completed": true,
+      "createdAt": "2026-04-20",
+      "priority": "high"
+    },
+    {
+      "id": "2",
+      "title": "Actualizar documentación",
+      "completed": true,
+      "createdAt": "2026-04-21",
+      "priority": "medium"
+    },
+    {
+      "id": "3",
+      "title": "Corregir estilos del dashboard",
+      "completed": false,
+      "createdAt": "2026-04-22",
+      "priority": "low"
+    }
+  ]
+}

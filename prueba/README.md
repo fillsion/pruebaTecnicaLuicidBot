@@ -1,38 +1,103 @@
-Para esta prueba debes consumir la API de Google Books para buscar libros:
+# Prueba Técnica React - Gestión de Tareas
 
-GET https://www.googleapis.com/books/v1/volumes?q={search terms}
+## Contexto
 
-Para conocer el formato exacto de la respuesta, consulta la documentación oficial del endpoint “Volumes list”:
-https://developers.google.com/books/docs/v1/reference/volumes/list
+Necesitamos construir una pequeña aplicación en React para gestionar tareas. La aplicación debe permitir crear tareas, listarlas, filtrarlas, buscarlas, cambiar su estado y eliminarlas.
 
-Objetivo
+## Requisitos técnicos
 
-Implementar un Search Bar que permita buscar y mostrar los resultados de forma organizada (mínimo título e ID).
+- Los datos pueden manejarse en memoria usando estado local de React.
+- El código debe ser desarrollado en TypeScript.
 
-Requisitos de UI
+## Duración estimada
 
-Mostrar los resultados en una tabla/lista.
+Máximo 90 minutos.
 
-Incluir paginación para poder navegar y mostrar hasta 40 ítems.
+## Objetivo
 
-Estructura requerida del código
+Crear una aplicación que permita visualizar y gestionar una lista de tareas.
+
+## Modelo de datos
+
+Puedes usar este modelo como referencia:
+
+```ts
+type Task = {
+  id: string;
+  title: string;
+  completed: boolean;
+  createdAt: string;
+  priority: "low" | "medium" | "high";
+};
+```
+
+datos iniciales
+
+```ts
+const initialTasks: Task[] = [
+  {
+    id: "1",
+    title: "Revisar pull request",
+    completed: false,
+    createdAt: "2026-04-20",
+    priority: "high",
+  },
+  {
+    id: "2",
+    title: "Actualizar documentación",
+    completed: true,
+    createdAt: "2026-04-21",
+    priority: "medium",
+  },
+  {
+    id: "3",
+    title: "Corregir estilos del dashboard",
+    completed: false,
+    createdAt: "2026-04-22",
+    priority: "low",
+  },
+];
+```
+
+## Arquitectura requerida
 
 Debes implementar el flujo siguiendo esta arquitectura:
 
-services → actions → hook → component
+`services -> actions -> hook -> component`
 
-Services: lógica de consumo de la API de Google Books (request, params, manejo de respuesta). 'use server'
+- `hook`: manejo de estado, queries y mutaciones.
+- `component`: solo presentación e interacción de UI.
 
-Actions: lógica propia del negocio (transformaciones, validaciones, normalización de datos, etc.). 'use server'
+## Consumo de endpoints
 
-Hook: lógica del llamado usando TanStack Query / React Query (loading, error, paginación).
+Debes usar los endpoints del proyecto para gestionar tareas:
 
-Component: presentación de UI y render de los datos obtenidos.
+- `GET /api/tasks`: listar tareas.
+- `POST /api/tasks`: crear tarea.
+- `GET /api/tasks/:id`: obtener tarea por id.
+- `PATCH /api/tasks/:id`: actualizar tarea.
+- `DELETE /api/tasks/:id`: eliminar tarea.
 
-Axios y tanstack query ya estan instalados
+### Ejemplos rápidos (curl / Postman)
 
-Tanstack esta instalado pero no configurado
+Crear tarea (`POST /api/tasks`):
 
-Tiempo
+```bash
+curl --request POST "http://localhost:3000/api/tasks" \
+  --header "Content-Type: application/json" \
+  --data-raw "{\"title\":\"Aprender React Query\",\"priority\":\"medium\"}"
+```
 
-Tendrás 1 hora para completar el reto.
+Actualizar tarea (`PATCH /api/tasks/:id`):
+
+```bash
+curl --request PATCH "http://localhost:3000/api/tasks/1" \
+  --header "Content-Type: application/json" \
+  --data-raw "{\"title\":\"Aprender React Query (editado)\",\"completed\":true,\"priority\":\"high\"}"
+```
+
+## Estado y data-fetching
+
+TanStack Query ya está instalado en el proyecto y **debe usarse** para consultas y mutaciones.
+
+La lógica de data-fetching y actualización de estado debe centralizarse dentro de un hook (por ejemplo `useTasks`), no directamente en los componentes.
